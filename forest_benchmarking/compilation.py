@@ -101,25 +101,6 @@ def _CNOT(q1, q2):
     p.inst(_H(q2))
     return p
 
-def CNOT_X_basis(control, target) -> Program:
-    """
-    The CNOT in the X basis, i.e.
-
-    CNOTX = |+X+| * I + |-X-| * Z
-
-    where |+> and |-> are the +/- eigenstate of the Pauli X operator and * denotes a tensor product.
-
-    :param control: qubit label
-    :param target: qubit label
-    :return: program
-    """
-    prog = Program()
-    prog += H(control)
-    prog += CZ(control, target)
-    prog += H(control)
-    return prog
-
-
 def is_magic_angle(angle):
     return (np.isclose(np.abs(angle), pi / 2)
             or np.isclose(np.abs(angle), pi)
